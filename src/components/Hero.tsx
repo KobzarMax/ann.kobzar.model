@@ -1,9 +1,51 @@
-export default function Hero() {
+import { ROUTE_ABOUT, ROUTE_PORTFOLIO } from '@/routes/routes';
+import Link from 'next/link';
+import VerticalRandomPhoto from './VerticalImage';
+import { RenderPhotoType } from '@/api';
+
+export default function Hero({ photos }: { photos?: RenderPhotoType[] }) {
+  if (!photos || photos.length < 2) {
+    return null;
+  }
+
+  const shuffled = [...photos].sort(() => Math.random() - 0.5);
+  const [randomPhotoOne, randomPhotoTwo] = shuffled.slice(0, 2);
+
   return (
-    <div className="min-h-dvh grid grid-cols-2 p-5 lg:p-10">
-      <div></div>
-      <div className="flex items-center justify-center">
-        
+    <div className="grid grid-rows-[auto_auto] h-full -space-y-0.5 lg:space-y-0 lg:grid-rows-1 lg:grid-cols-2">
+      <div className="max-h-[calc(100dvh-84px)] h-[50vh] lg:h-full relative">
+        <VerticalRandomPhoto randomPhoto={randomPhotoOne} />
+        <Link
+          className="inset-0 absolute outline-none focus:outline-none active:outline-none mainLink"
+          href={ROUTE_ABOUT}
+          aria-label="About page"
+        >
+          <div className="absolute left-1/2 -translate-x-1/2 bottom-[12.5%]">
+            <div className="px-3 b py-3 relative">
+              <span className="uppercase text-white text-[2.188rem] font-bold">
+                about
+              </span>
+              <span className="linkDecoration bg-white absolute bottom-0 left-1/2 -translate-x-1/2 h-[0.1875rem] w-[1.875rem] opacity-0 transition-all duration-300" />
+            </div>
+          </div>
+        </Link>
+      </div>
+      <div className="max-h-[calc(100dvh-84px)] h-[50vh] lg:h-full relative">
+        <VerticalRandomPhoto randomPhoto={randomPhotoTwo} />
+        <Link
+          aria-label="Portfolio page"
+          className="inset-0 absolute outline-none focus:outline-none active:outline-none mainLink"
+          href={ROUTE_PORTFOLIO}
+        >
+          <div className="absolute left-1/2 -translate-x-1/2 bottom-[12.5%]">
+            <div className="px-3 b py-3 relative">
+              <span className="uppercase text-white text-[2.188rem] font-bold">
+                portfolio
+              </span>
+              <span className="linkDecoration bg-white absolute bottom-0 left-1/2 -translate-x-1/2 h-[0.1875rem] w-[1.875rem] opacity-0 transition-all duration-300" />
+            </div>
+          </div>
+        </Link>
       </div>
     </div>
   );

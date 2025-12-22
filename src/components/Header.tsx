@@ -10,10 +10,10 @@ export default function Header() {
       className={`py-6 px-10 bg-white sticky top-0 z-50 w-full`}
     >
       <div
-        className={`h-fit px-3 md:flex-row flex-col gap-4 flex items-center justify-between`}
+        className={`h-fit px-3 md:flex-row flex-col gap-4 flex items-center justify-between md:justify-end relative`}
       >
         <Link
-          className={`text-textColor font-bold mx-auto font-georgia text-3xl uppercase`}
+          className={`text-textColor font-bold mx-auto font-georgia text-3xl uppercase md:absolute md:top-1/2 md:-translate-y-1/2 md:left-1/2 md:-translate-x-1/2`}
           href={ROUTE_HOME}
         >
           Anna Kobzar

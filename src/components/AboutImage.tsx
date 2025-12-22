@@ -40,7 +40,7 @@ export default function AboutImage({ photos }: Props) {
     <Image
       width={0}
       height={0}
-      style={{ height: 'auto' }}
+      style={{ height: 'auto', width: 'auto' }}
       sizes="100vw"
       loading="lazy"
       className="max-h-[calc(100dvh-84px)] w-fit object-contain"

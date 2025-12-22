@@ -5,13 +5,11 @@ import { useClickOutside } from '@/utils/client';
 import { faX } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
-import { useCallback, useEffect, useRef } from 'react';
+import { lazy, useCallback, useEffect, useRef } from 'react';
+import Slider from 'react-slick';
 
-import 'swiper/css';
-import 'swiper/css/effect-fade';
-import 'swiper/css/navigation';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { EffectFade, Keyboard, Mousewheel } from 'swiper/modules';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 export default function PhotoPopup() {
   const {
@@ -30,7 +28,12 @@ export default function PhotoPopup() {
     setHomePhotoUrl('');
     setActivePhotoUrl('');
     setCarouselPhotos([]);
-  }, [togglePhotoDialog, setHomePhotoUrl, setActivePhotoUrl]);
+  }, [
+    togglePhotoDialog,
+    setHomePhotoUrl,
+    setActivePhotoUrl,
+    setCarouselPhotos
+  ]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -46,36 +49,31 @@ export default function PhotoPopup() {
 
   if (!isDialogOpen) return null;
 
+  const settings = {
+    dots: false,
+    fade: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    swipeToSlide: true,
+    // adaptiveHeight: true,
+    arrows: false,
+    lazyLoad: true
+  };
+
   return (
     <div className="fixed inset-0 z-[1000] w-screen h-screen flex items-start justify-center bg-black/20">
       <div
         ref={dialogRef}
         className="grid grid-rows-1 px-1 md:px-0 lg:min-h-full max-h-[95%] pt-[4.5rem] lg:pt-5 py-5 relative justify-start"
       >
-        <Swiper
-          slidesPerView={1}
-          centeredSlides
-          keyboard={{ enabled: true }}
-          mousewheel={{
-            forceToAxis: true,
-            sensitivity: 1,
-            releaseOnEdges: true,
-            thresholdDelta: 50
-          }}
-          touchRatio={1}
-          threshold={20}
-          longSwipes={false}
-          loop
-          effect="fade"
-          fadeEffect={{ crossFade: true }}
-          modules={[EffectFade, Mousewheel, Keyboard]}
-          className="swiper lg:max-w-4xl w-full mx-auto flex items-start justify-center reviews-swiper relative"
+        <Slider
+          {...settings}
+          className="lg:max-w-4xl w-full mx-auto flex items-start justify-center"
         >
           {carouselPhotos?.map((photo) => (
-            <SwiperSlide
-              key={photo.id}
-              className="swiper-slide !grid relative w-full !h-fit"
-            >
+            <div key={photo.id} className="!grid relative w-full !h-fit">
               <Image
                 width={0}
                 height={0}
@@ -92,9 +90,9 @@ export default function PhotoPopup() {
               >
                 <FontAwesomeIcon className="text-white" icon={faX} />
               </button>
-            </SwiperSlide>
+            </div>
           ))}
-        </Swiper>
+        </Slider>
       </div>
     </div>
   );
