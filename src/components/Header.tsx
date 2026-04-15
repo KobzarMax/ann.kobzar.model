@@ -10,7 +10,7 @@ export default function Header() {
       className={`py-6 px-10 bg-white sticky top-0 z-50 w-full`}
     >
       <div
-        className={`h-fit px-3 md:flex-row flex-col gap-4 flex items-center justify-between`}
+        className={`h-fit px-3 md:flex-row flex-col gap-4 flex items-center justify-between relative`}
       >
         <Link
           className={`text-textColor font-bold mx-auto font-georgia text-3xl uppercase`}
@@ -18,7 +18,7 @@ export default function Header() {
         >
           Anna Kobzar
         </Link>
-        <div className={`gap-4 flex items-center justify-between`}>
+        <div className={`gap-4 flex items-center justify-between lg:absolute lg:right-0 lg:top-1/2 lg:-translate-y-1/2`}>
           <Link
             className={`text-textColor text-3xl`}
             target={`_blank`}

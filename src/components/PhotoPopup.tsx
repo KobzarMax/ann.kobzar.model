@@ -46,12 +46,23 @@ export default function PhotoPopup({
 
   useClickOutside(dialogRef, () => handleClosePhoto());
 
-  const initialSlideIndex = useMemo(() => {
-    if (!carouselPhotos || !activePhotoUrl) return 0;
-    const idx = carouselPhotos.findIndex(
-      (photo) => photo.url === activePhotoUrl
-    );
-    return idx >= 0 ? idx : 0;
+  const displayPhotos = useMemo(() => {
+    if (!carouselPhotos || carouselPhotos.length === 0) return [];
+
+    let startIndex = 0;
+    if (activePhotoUrl) {
+      const foundIdx = carouselPhotos.findIndex(p => p.url === activePhotoUrl);
+      if (foundIdx !== -1) startIndex = foundIdx;
+    }
+
+    const result = [];
+    const total = carouselPhotos.length;
+    const limit = Math.min(total, 10);
+
+    for (let i = 0; i < limit; i++) {
+      result.push(carouselPhotos[(startIndex + i) % total]);
+    }
+    return result;
   }, [carouselPhotos, activePhotoUrl]);
 
   if (isDialogOpen)
@@ -64,7 +75,7 @@ export default function PhotoPopup({
           <Swiper
             slidesPerView={1}
             centeredSlides
-            initialSlide={initialSlideIndex}
+            initialSlide={0}
             keyboard={{
               enabled: true
             }}
@@ -77,16 +88,16 @@ export default function PhotoPopup({
             touchRatio={1}
             threshold={20}
             longSwipes={false}
-            loop={false}
+            loop={displayPhotos.length >= 4}
             effect="fade"
             fadeEffect={{ crossFade: true }}
             modules={[EffectFade, Mousewheel, Keyboard]}
             className="swiper lg:max-w-4xl w-full mx-auto flex items-start justify-center reviews-swiper relative"
           >
-            {carouselPhotos?.map((photo) => (
+            {displayPhotos.map((photo, idx) => (
               <SwiperSlide
-                key={photo.id}
-                className="swiper-slide relative w-full !h-fit"
+                key={`${photo.id}-${idx}`}
+                className="swiper-slide relative w-full"
               >
                 <Image
                   width={0}
@@ -100,9 +111,13 @@ export default function PhotoPopup({
                 />
                 <button
                   onClick={() => handleClosePhoto()}
-                  className="absolute cursor-pointer rotate-90 md:hidden top-3 right-3 z-10 px-3 py-1.5"
+                  className="absolute cursor-pointer top-4 right-4 z-20 p-2 transition-all duration-300 hover:scale-110 active:scale-95 group lg:hidden"
                 >
-                  <FontAwesomeIcon className="text-white" icon={faX} />
+                  <FontAwesomeIcon 
+                    className="text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] opacity-70 group-hover:opacity-100 transition-opacity" 
+                    icon={faX} 
+                    size="lg"
+                  />
                 </button>
               </SwiperSlide>
             ))}

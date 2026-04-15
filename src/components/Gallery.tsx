@@ -24,7 +24,6 @@ export default function Gallery({ photos }: { photos: RenderPhotoType[] }) {
       (entries) => {
         if (entries[0].isIntersecting) {
           setVisibleCount((prev) => {
-            // Load 30 more photos, but don’t exceed total photos
             const next = Math.min(prev + 30, photos ? photos.length : 1);
             return next;
           });

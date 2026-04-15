@@ -15,6 +15,27 @@ export const metadata: Metadata = {
     'model projects',
     'collaborations'
   ],
+  openGraph: {
+    title: 'Anna Kobzar Model',
+    description: 'Welcome to the official website of Anna Kobzar, a professional photo and fashion model.',
+    type: 'website',
+    images: [
+      {
+        url: '/1.PNG',
+        alt: 'Anna Kobzar Model - Portfolio Image 1',
+      },
+      {
+        url: '/2.PNG',
+        alt: 'Anna Kobzar Model - Portfolio Image 2',
+      }
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Anna Kobzar Model',
+    description: 'Welcome to the official website of Anna Kobzar, a professional photo and fashion model.',
+    images: ['/1.PNG', '/2.PNG'],
+  },
   verification: {
     google: 'PW43WjXI65rpxjTYnNJSxfhGIsCNoNn_5CTrw0H3LNs'
   }
