@@ -113,3 +113,24 @@ body {
 .embla__slide {
   transform: translate3d(0, 0, 0);
 }
+
+@media (max-width: 768px) {
+  .header-inner {
+    grid-template-areas:
+      "title title"
+      "book-me socials";
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .header-title {
+    grid-area: title;
+  }
+
+  .header-book-me {
+    grid-area: book-me;
+  }
+
+  .header-socials {
+    grid-area: socials;
+  }
+}

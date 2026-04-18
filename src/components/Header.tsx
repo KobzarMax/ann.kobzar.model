@@ -7,24 +7,24 @@ export default function Header() {
   return (
     <header
       id="header"
-      className={`py-6 px-10 bg-white sticky top-0 z-50 w-full`}
+      className={`py-6 px-5 md:px-10 bg-white sticky top-0 z-50 w-full`}
     >
       <div
-        className={`h-fit px-3 md:flex-row flex-col gap-4 flex items-center justify-center`}
+        className={`h-fit grid grid-cols-2 md:flex-row flex-col gap-4 md:flex items-center justify-center header-inner`}
       >
         <Link
-          className={`bg-textColor text-white px-4 py-2 font-bold`}
+          className={`bg-textColor w-fit text-white px-4 py-2 font-bold header-book-me`}
           href={ROUTE_CONTACT}
         >
           Book me
         </Link>
         <Link
-          className={`text-textColor font-bold mx-auto font-georgia text-3xl uppercase`}
+          className={`text-textColor col-span-2 font-bold mx-auto font-georgia text-3xl uppercase header-title`}
           href={ROUTE_HOME}
         >
           Anna Kobzar
         </Link>
-        <div className={`gap-4 flex items-center justify-between`}>
+        <div className={`gap-4 flex items-center justify-end header-socials`}>
           <Link
             className={`text-textColor text-3xl`}
             target={`_blank`}
