@@ -19,7 +19,7 @@ export default function Header() {
           Book me
         </Link>
         <Link
-          className={`text-textColor col-span-2 font-bold mx-auto font-georgia text-3xl uppercase header-title`}
+          className={`text-textColor col-span-2 md:col-span-1 font-bold mx-auto font-georgia text-3xl uppercase header-title`}
           href={ROUTE_HOME}
         >
           Anna Kobzar
