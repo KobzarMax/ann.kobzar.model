@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ROUTE_HOME } from '@/routes/routes';
+import { ROUTE_CONTACT, ROUTE_HOME } from '@/routes/routes';
 import Image from 'next/image';
 import { instagram, tiktok, whatsapp } from '@/static/icons';
 
@@ -10,15 +10,21 @@ export default function Header() {
       className={`py-6 px-10 bg-white sticky top-0 z-50 w-full`}
     >
       <div
-        className={`h-fit px-3 md:flex-row flex-col gap-4 flex items-center justify-between relative`}
+        className={`h-fit px-3 md:flex-row flex-col gap-4 flex items-center justify-center`}
       >
+        <Link
+          className={`bg-textColor text-white px-4 py-2 font-bold`}
+          href={ROUTE_CONTACT}
+        >
+          Book me
+        </Link>
         <Link
           className={`text-textColor font-bold mx-auto font-georgia text-3xl uppercase`}
           href={ROUTE_HOME}
         >
           Anna Kobzar
         </Link>
-        <div className={`gap-4 flex items-center justify-between lg:absolute lg:right-0 lg:top-1/2 lg:-translate-y-1/2`}>
+        <div className={`gap-4 flex items-center justify-between`}>
           <Link
             className={`text-textColor text-3xl`}
             target={`_blank`}
