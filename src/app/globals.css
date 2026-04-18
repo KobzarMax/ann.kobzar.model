@@ -130,7 +130,7 @@ body {
     grid-area: book-me;
   }
 
-  .header-socials {
+  .header-social {
     grid-area: socials;
   }
 }

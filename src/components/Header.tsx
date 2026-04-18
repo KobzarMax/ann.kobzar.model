@@ -24,7 +24,7 @@ export default function Header() {
         >
           Anna Kobzar
         </Link>
-        <div className={`gap-4 flex items-center justify-end header-socials`}>
+        <div className={`gap-4 flex items-center justify-end header-social`}>
           <Link
             className={`text-textColor text-3xl`}
             target={`_blank`}
