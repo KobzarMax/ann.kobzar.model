@@ -106,7 +106,7 @@ export default function PhotoPopup({
                   loading="lazy"
                   className="object-contain row-span-1"
                   style={{ width: '100%', height: '100%' }}
-                  src={photo.url}
+                  src={`/api/image/${photo.id}`}
                   alt={photo.name}
                 />
                 <button

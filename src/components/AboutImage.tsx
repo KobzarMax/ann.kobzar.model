@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 
 type Photo = {
-  url: string;
+  id: string;
   name: string;
 };
 
@@ -29,7 +29,7 @@ export default function AboutImage({ photos }: Props) {
       sizes="100vw"
       loading="lazy"
       className="max-h-[calc(100dvh-84px)] object-center object-contain"
-      src={randomPhoto.url}
+      src={`/api/image/${randomPhoto.id}`}
       alt={randomPhoto.name}
       onLoad={(img) => {
         setIsLandscape(
@@ -45,7 +45,7 @@ export default function AboutImage({ photos }: Props) {
       sizes="100vw"
       loading="lazy"
       className="max-h-[calc(100dvh-84px)] w-fit object-contain"
-      src={randomPhoto.url}
+      src={`/api/image/${randomPhoto.id}`}
       alt={randomPhoto.name}
       onLoad={(img) => {
         setIsLandscape(

@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 
 type Photo = {
-  url: string;
+  id: string;
   name: string;
 };
 
@@ -21,7 +21,7 @@ export default function VerticalRandomPhoto({ randomPhoto }: Props) {
       sizes="100vw"
       loading="lazy"
       className="max-h-[calc(100dvh-84px)] object-center object-cover"
-      src={randomPhoto.url}
+      src={`/api/image/${randomPhoto.id}`}
       alt={randomPhoto.name}
       onLoad={(img) => {
         setIsLandscape(
@@ -37,7 +37,7 @@ export default function VerticalRandomPhoto({ randomPhoto }: Props) {
       sizes="100vw"
       loading="lazy"
       className="max-h-[calc(100dvh-84px)] min-h-full object-cover"
-      src={randomPhoto.url}
+      src={`/api/image/${randomPhoto.id}`}
       alt={randomPhoto.name}
       onLoad={(img) => {
         setIsLandscape(

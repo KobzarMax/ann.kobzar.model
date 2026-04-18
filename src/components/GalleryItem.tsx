@@ -26,7 +26,7 @@ export default function GalleryItem({ photo }: GalleryItemProps) {
         sizes="100vw"
         loading="lazy"
         style={{ width: '100%', height: 'auto' }}
-        src={photo.url}
+        src={`/api/image/${photo.id}`}
         alt={photo.name}
         onClick={() => handleOpenPhoto(photo.url)}
       />

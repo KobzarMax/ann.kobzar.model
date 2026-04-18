@@ -15,10 +15,28 @@ export default function ContactForm() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus('sending');
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    setStatus('success');
-    setFormData({ email: '', phone: '', messenger: 'whatsapp', message: '' });
-    setTimeout(() => setStatus('idle'), 5000);
+
+    try {
+      const response = await fetch('/api/api/send', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send message');
+      }
+
+      setStatus('success');
+      setFormData({ email: '', phone: '', messenger: 'whatsapp', message: '' });
+      setTimeout(() => setStatus('idle'), 5000);
+    } catch (err) {
+      console.error(err);
+      setStatus('error');
+      setTimeout(() => setStatus('idle'), 5000);
+    }
   };
 
   const inputClasses = "w-full bg-white border border-black p-4 focus:bg-gray-50 outline-none transition-all duration-300 placeholder:text-gray-300 text-base font-normal rounded-none";
@@ -117,8 +135,14 @@ export default function ContactForm() {
         </div>
 
         {status === 'success' && (
-          <p className="text-center text-xs uppercase tracking-widest text-gray-500 animate-in fade-in duration-500">
+          <p className="text-center text-xs uppercase tracking-widest text-green-600 animate-in fade-in duration-500">
             Received. I&apos;ll get back to you shortly.
+          </p>
+        )}
+
+        {status === 'error' && (
+          <p className="text-center text-xs uppercase tracking-widest text-red-600 animate-in fade-in duration-500">
+            Something went wrong. Please try again.
           </p>
         )}
       </form>
