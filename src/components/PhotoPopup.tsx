@@ -67,10 +67,10 @@ export default function PhotoPopup({
 
   if (isDialogOpen)
     return (
-      <div className="fixed inset-0 z-[1000] w-screen h-screen flex items-center lg:items-start justify-center bg-black/20">
+      <div className="fixed inset-0 z-[1000] w-screen h-screen flex items-start justify-center bg-black/20">
         <div
           ref={dialogRef}
-          className={`grid grid-rows-1 px-1 md:px-0 lg:min-h-full max-h-[95%] py-5 relative justify-start`}
+          className={`grid grid-rows-1 px-1 md:px-0 lg:min-h-full max-h-[95%] pt-[4.5rem] lg:pt-5 py-5 relative justify-start`}
         >
           <Swiper
             slidesPerView={1}
@@ -96,22 +96,22 @@ export default function PhotoPopup({
           >
             {displayPhotos.map((photo, idx) => (
               <SwiperSlide
-                key={`${photo.id}-${idx}`}
-                className="swiper-slide relative w-full"
+                key={photo.id}
+                className="swiper-slide !grid relative w-full !h-fit"
               >
                 <Image
                   width={0}
                   height={0}
                   sizes="100vw"
                   loading="lazy"
-                  className="object-contain row-span-1"
+                  className="object-contain row-span-1 max-h-[99vh]"
                   style={{ width: '100%', height: '100%' }}
                   src={photo.url}
                   alt={photo.name}
                 />
                 <button
                   onClick={() => handleClosePhoto()}
-                  className="absolute cursor-pointer top-4 right-4 z-20 p-2 transition-all duration-300 hover:scale-110 active:scale-95 group lg:hidden"
+                  className="absolute cursor-pointer rotate-90 md:hidden top-2 right-1.5 z-10 px-3 py-1.5"
                 >
                   <FontAwesomeIcon 
                     className="text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] opacity-70 group-hover:opacity-100 transition-opacity" 

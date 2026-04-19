@@ -21,8 +21,7 @@ export default function AboutImage({ photos }: Props) {
     setRandomPhoto(photos[index]);
   }, [photos]);
 
-  if (!randomPhoto) return null; // Or return a loader / skeleton
-
+  if (!randomPhoto) return null;
   return isLandscape ? (
     <Image
       fill

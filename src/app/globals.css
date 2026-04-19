@@ -85,7 +85,7 @@ body {
 
 .swiper-slide {
   background-position: center;
-  background-size: cover;
+  background-size: contain;
 }
 
 .swiper-slide {
@@ -112,4 +112,20 @@ body {
 
 .embla__slide {
   transform: translate3d(0, 0, 0);
+}
+
+.mainLink {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.mainLink:active {
+  outline: none;
+  border: none;
+}
+
+.mainLink:focus,
+.mainLink:active {
+  outline: none;
+  border: none;
+  box-shadow: none;
 }
