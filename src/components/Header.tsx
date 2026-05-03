@@ -13,10 +13,11 @@ export default function Header() {
         className={`h-fit grid grid-cols-2 md:flex-row flex-col gap-4 md:flex items-center justify-center header-inner`}
       >
         <Link
-          className={`bg-textColor w-fit text-white px-4 py-2 font-bold header-book-me`}
+          className={`text-textColor relative w-fit px-4 py-2 font-bold header-book-me mainLink`}
           href={ROUTE_CONTACT}
         >
-          Book me
+          Contact
+          <span className="linkDecoration bg-textColor absolute bottom-0 left-1/2 -translate-x-1/2 h-[0.1875rem] w-[1.875rem] opacity-0 transition-all duration-300" />
         </Link>
         <Link
           className={`text-textColor col-span-2 md:col-span-1 font-bold mx-auto font-georgia text-3xl uppercase header-title`}

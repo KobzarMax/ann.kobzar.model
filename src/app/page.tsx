@@ -30,7 +30,7 @@ export default async function Home() {
             href={ROUTE_ABOUT}
           >
             <div className="absolute left-1/2 -translate-x-1/2 bottom-[12.5%]">
-              <div className="px-3 b py-3 relative">
+              <div className="px-3 py-3 relative">
                 <span className="uppercase text-white text-[2.188rem] font-bold">
                   about
                 </span>
@@ -46,7 +46,7 @@ export default async function Home() {
             href={ROUTE_PORTFOLIO}
           >
             <div className="absolute left-1/2 -translate-x-1/2 bottom-[12.5%]">
-              <div className="px-3 b py-3 relative">
+              <div className="px-3 py-3 relative">
                 <span className="uppercase text-white text-[2.188rem] font-bold">
                   portfolio
                 </span>

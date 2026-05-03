@@ -5,8 +5,6 @@ import { useState, FormEvent } from 'react';
 export default function ContactForm() {
   const [formData, setFormData] = useState({
     email: '',
-    phone: '',
-    messenger: 'whatsapp',
     message: '',
   });
 
@@ -30,7 +28,7 @@ export default function ContactForm() {
       }
 
       setStatus('success');
-      setFormData({ email: '', phone: '', messenger: 'whatsapp', message: '' });
+      setFormData({ email: '', message: '' });
       setTimeout(() => setStatus('idle'), 5000);
     } catch (err) {
       console.error(err);
@@ -60,43 +58,6 @@ export default function ContactForm() {
             placeholder="hello@example.com"
             className={inputClasses}
           />
-        </div>
-
-        <div className="space-y-1">
-          <label htmlFor="phone" className={labelClasses}>
-            Phone Number
-          </label>
-          <input
-            type="tel"
-            id="phone"
-            value={formData.phone}
-            onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-            placeholder="+44 0 000 000 00"
-            className={inputClasses}
-          />
-        </div>
-
-        <div className="space-y-1">
-          <label htmlFor="messenger" className={labelClasses}>
-            Preferred Messenger
-          </label>
-          <div className="relative">
-            <select
-              id="messenger"
-              value={formData.messenger}
-              onChange={(e) => setFormData({ ...formData, messenger: e.target.value })}
-              className={`${inputClasses} appearance-none cursor-pointer pr-8`}
-            >
-              <option value="telegram">Telegram</option>
-              <option value="whatsapp">WhatsApp</option>
-              <option value="wechat">WeChat</option>
-            </select>
-            <div className="absolute right-4 bottom-1/2 translate-y-1/2 pointer-events-none text-black">
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </div>
-          </div>
         </div>
 
         <div className="space-y-1">
