@@ -27,7 +27,8 @@ export default function AboutImage({ photos }: Props) {
     <Image
       fill
       sizes="100vw"
-      loading="lazy"
+      loading="eager"
+      priority
       className="max-h-[calc(100dvh-84px)] object-center object-contain"
       src={`/api/image/${randomPhoto.id}`}
       alt={randomPhoto.name}
@@ -43,7 +44,8 @@ export default function AboutImage({ photos }: Props) {
       height={0}
       style={{ height: 'auto' }}
       sizes="100vw"
-      loading="lazy"
+      loading="eager"
+      priority
       className="max-h-[calc(100dvh-84px)] w-fit object-contain"
       src={`/api/image/${randomPhoto.id}`}
       alt={randomPhoto.name}

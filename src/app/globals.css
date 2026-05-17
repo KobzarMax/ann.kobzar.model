@@ -114,23 +114,52 @@ body {
   transform: translate3d(0, 0, 0);
 }
 
-@media (max-width: 768px) {
-  .header-inner {
-    grid-template-areas:
-      "title title"
-      "book-me socials";
-    grid-template-columns: 1fr 1fr;
-  }
+._lock {
+    overflow: hidden;
+}
 
-  .header-title {
-    grid-area: title;
-  }
+.burger {
+    height: 16px;
+    width: 32px;
+    position: relative;
+}
+.burger-line {
+    display: flex;
+    width: 32px;
+    height: 2px;
+    background-color: #121212;
+    transition: 0.3s all ease-in-out;
+}
+.top-line {
+    position: absolute;
+    left: 0;
+    top: 0%;
+}
+.mid-line {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.bot-line {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+.burger.active > .top-line {
+    transform: translateY(7px) rotate(45deg);
+    transition: 0.3s all ease-in-out;
+}
+.burger.active > .mid-line {
+    opacity: 0;
+    transition: 0.3s all ease-in-out;
+}
+.burger.active > .bot-line {
+    transform: translateY(-7px) rotate(-45deg);
+    transition: 0.3s all ease-in-out;
+}
 
-  .header-book-me {
-    grid-area: book-me;
-  }
-
-  .header-social {
-    grid-area: socials;
-  }
+.header-slide-inner {
+  background: #FFFFFF;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 1) 80%, rgba(255, 255, 255, 0) 100%);  
 }

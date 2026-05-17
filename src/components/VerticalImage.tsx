@@ -20,6 +20,7 @@ export default function VerticalRandomPhoto({ randomPhoto }: Props) {
       fill
       sizes="100vw"
       loading="eager"
+      priority
       className="max-h-[calc(100dvh-84px)] object-center object-cover"
       src={`/api/image/${randomPhoto.id}`}
       alt={randomPhoto.name}
@@ -36,7 +37,8 @@ export default function VerticalRandomPhoto({ randomPhoto }: Props) {
       style={{ width: '100%', height: 'auto' }}
       sizes="100vw"
       loading="eager"
-      className="max-h-[calc(100dvh-84px)] object-top min-h-full object-cover"
+      priority
+      className="max-h-[calc(100dvh-84px)] object-center min-h-full object-cover"
       src={`/api/image/${randomPhoto.id}`}
       alt={randomPhoto.name}
       onLoad={(img) => {

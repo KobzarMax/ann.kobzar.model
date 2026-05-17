@@ -1,16 +1,17 @@
 'use client';
 
-import { useState, FormEvent } from 'react';
+import { useState } from 'react';
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
     email: '',
     message: '',
+    fullName: '',
   });
 
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus('sending');
 
@@ -28,7 +29,7 @@ export default function ContactForm() {
       }
 
       setStatus('success');
-      setFormData({ email: '', message: '' });
+      setFormData({ email: '', message: '', fullName: '', });
       setTimeout(() => setStatus('idle'), 5000);
     } catch (err) {
       console.error(err);
@@ -44,7 +45,22 @@ export default function ContactForm() {
     <div className="w-full max-w-md animate-in fade-in slide-in-from-bottom-4 duration-1000">
       <h2 className="text-3xl font-light mb-10 tracking-tight">Get in touch</h2>
       
-      <form onSubmit={handleSubmit} className="flex flex-col gap-8">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+        <div className="space-y-1">
+          <label htmlFor="email" className={labelClasses}>
+            Full name
+          </label>
+          <input
+            required
+            type="text"
+            id="fullName"
+            value={formData.fullName}
+            onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+            placeholder="hello@example.com"
+            className={inputClasses}
+          />
+        </div>
+
         <div className="space-y-1">
           <label htmlFor="email" className={labelClasses}>
             Email Address
@@ -67,7 +83,7 @@ export default function ContactForm() {
           <textarea
             required
             id="message"
-            rows={3}
+            rows={6}
             value={formData.message}
             onChange={(e) => setFormData({ ...formData, message: e.target.value })}
             placeholder="Tell me about your project..."
