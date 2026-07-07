@@ -38,7 +38,7 @@ export default function Gallery({ photos }: { photos: RenderPhotoType[] }) {
   }, [photos, visibleCount]);
 
   return (
-    <div className="container py-5 mx-auto grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+    <div className="container mx-auto grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
       {columns.map((column, idx) => (
         <div key={idx} className="flex-1 flex flex-col gap-4">
           {column.map((photo) => {

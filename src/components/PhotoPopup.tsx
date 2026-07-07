@@ -97,28 +97,30 @@ export default function PhotoPopup({
             {displayPhotos.map((photo, idx) => (
               <SwiperSlide
                 key={`${photo.id}-${idx}`}
-                className="swiper-slide relative w-full"
+                className="swiper-slide !flex items-center w-full"
               >
-                <Image
-                  width={0}
-                  height={0}
-                  sizes="100vw"
-                  loading="lazy"
-                  className="object-contain row-span-1"
-                  style={{ width: '100%', height: '100%' }}
-                  src={`/api/image/${photo.id}`}
-                  alt={photo.name}
-                />
-                <button
-                  onClick={() => handleClosePhoto()}
-                  className="absolute cursor-pointer top-4 right-4 z-20 p-2 transition-all duration-300 hover:scale-110 active:scale-95 group lg:hidden"
-                >
-                  <FontAwesomeIcon 
-                    className="text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] opacity-70 group-hover:opacity-100 transition-opacity" 
-                    icon={faX} 
-                    size="lg"
+                <div className="relative align-middle inline-block">
+                  <Image
+                    width={0}
+                    height={0}
+                    sizes="100vw"
+                    loading="lazy"
+                    className="object-contain max-h-[95vh] w-auto h-auto"
+                    src={`/api/image/${photo.id}`}
+                    alt={photo.name}
                   />
-                </button>
+
+                  <button
+                    onClick={() => handleClosePhoto()}
+                    className="absolute top-2 right-2 z-20 cursor-pointer p-2 transition-all duration-300 hover:scale-110 active:scale-95 group lg:hidden"
+                  >
+                    <FontAwesomeIcon
+                      className="text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] opacity-60 group-hover:opacity-100 transition-opacity"
+                      icon={faX}
+                      size="lg"
+                    />
+                  </button>
+                </div>
               </SwiperSlide>
             ))}
           </Swiper>

@@ -47,7 +47,7 @@ export default function ContactForm() {
       
       <form onSubmit={handleSubmit} className="flex flex-col gap-6">
         <div className="space-y-1">
-          <label htmlFor="email" className={labelClasses}>
+          <label htmlFor="fullName" className={labelClasses}>
             Full name
           </label>
           <input
@@ -56,7 +56,7 @@ export default function ContactForm() {
             id="fullName"
             value={formData.fullName}
             onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-            placeholder="hello@example.com"
+            placeholder="John Smith"
             className={inputClasses}
           />
         </div>
@@ -95,10 +95,10 @@ export default function ContactForm() {
           <button
             type="submit"
             disabled={status === 'sending'}
-            className="group relative w-full bg-black text-white py-5 px-8 overflow-hidden transition-all duration-500 hover:bg-gray-800 disabled:bg-gray-300 rounded-none"
+            className="relative w-full bg-black text-white py-5 px-8 overflow-hidden transition-all duration-500 hover:bg-gray-800 disabled:bg-gray-300 rounded-none"
           >
             <span className={`relative z-10 uppercase tracking-[0.3em] text-xs font-bold transition-opacity duration-300 ${status === 'sending' ? 'opacity-0' : 'opacity-100'}`}>
-              {status === 'success' ? 'Message Sent' : 'Send Inquiry'}
+              {status === 'success' ? 'Message Sent' : 'Submit'}
             </span>
             
             {status === 'sending' && (
@@ -106,8 +106,6 @@ export default function ContactForm() {
                 <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
               </div>
             )}
-            
-            <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
           </button>
         </div>
 

@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
+import { ROUTE_PORTFOLIO } from '@/routes/routes';
 
 type Photo = {
   id: string;
@@ -21,39 +23,47 @@ export default function AboutImage({ photos }: Props) {
     setRandomPhoto(photos[index]);
   }, [photos]);
 
-  if (!randomPhoto) return null; // Or return a loader / skeleton
+  if (!randomPhoto) return null;
 
   return isLandscape ? (
-    <Image
-      fill
-      sizes="100vw"
-      loading="eager"
-      priority
-      className="max-h-[calc(100dvh-84px)] object-center object-contain"
-      src={`/api/image/${randomPhoto.id}`}
-      alt={randomPhoto.name}
-      onLoad={(img) => {
-        setIsLandscape(
-          img.currentTarget.naturalWidth > img.currentTarget.naturalHeight
-        );
-      }}
-    />
+    <div className="h-full max-h-[75vh] flex items-center justify-center appearBlock overflow-hidden relative">
+      <Image
+        width={0}
+        height={0}
+        style={{ height: 'auto' }}
+        sizes="100vw"
+        loading="eager"
+        priority
+        className="max-h-[calc(100dvh-84px)] w-fit object-center object-contain"
+        src={`/api/image/${randomPhoto.id}`}
+        alt={randomPhoto.name}
+        onLoad={(img) => {
+          setIsLandscape(
+            img.currentTarget.naturalWidth > img.currentTarget.naturalHeight
+          );
+        }}
+      />
+      <Link href={ROUTE_PORTFOLIO} className="absolute inset-0 lg:hidden" />
+    </div>
   ) : (
-    <Image
-      width={0}
-      height={0}
-      style={{ height: 'auto' }}
-      sizes="100vw"
-      loading="eager"
-      priority
-      className="max-h-[calc(100dvh-84px)] w-fit object-contain"
-      src={`/api/image/${randomPhoto.id}`}
-      alt={randomPhoto.name}
-      onLoad={(img) => {
-        setIsLandscape(
-          img.currentTarget.naturalWidth > img.currentTarget.naturalHeight
-        );
-      }}
-    />
+    <div className="h-full max-h-[75vh] flex items-center justify-center appearBlock overflow-hidden relative">
+      <Image
+        width={0}
+        height={0}
+        style={{ height: 'auto' }}
+        sizes="100vw"
+        loading="eager"
+        priority
+        className="max-h-[calc(100dvh-84px)] w-fit object-contain"
+        src={`/api/image/${randomPhoto.id}`}
+        alt={randomPhoto.name}
+        onLoad={(img) => {
+          setIsLandscape(
+            img.currentTarget.naturalWidth > img.currentTarget.naturalHeight
+          );
+        }}
+      />
+      <Link href={ROUTE_PORTFOLIO} className="absolute inset-0 lg:hidden" />
+    </div>
   );
 }

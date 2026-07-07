@@ -14,7 +14,7 @@ export default function Header() {
         className={`h-fit py-5 px-5 md:px-10 relative flex gap-4 items-center justify-between lg:justify-center`}
       >
         <Link
-          className={`text-textColor hidden lg:block text-lg uppercase relative w-fit px-4 py-2 font-bold mainLink`}
+          className={`text-textColor hidden lg:block text-lg uppercase relative w-fit py-2 font-bold mainLink`}
           href={ROUTE_CONTACT}
         >
           Contact
