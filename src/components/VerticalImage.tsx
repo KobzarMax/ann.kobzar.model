@@ -1,51 +1,36 @@
 'use client';
 
-import { useState } from 'react';
 import Image from 'next/image';
-
-type Photo = {
-  id: string;
-  name: string;
-};
+import { useState, type SyntheticEvent } from 'react';
+import { type RenderPhotoType } from '@/api';
 
 type Props = {
-  randomPhoto: Photo;
+  randomPhoto: RenderPhotoType;
 };
 
-export default function VerticalRandomPhoto({ randomPhoto }: Props) {
+export default function VerticalImage({ randomPhoto }: Props) {
   const [isLandscape, setIsLandscape] = useState(false);
 
-  return isLandscape ? (
-    <Image
-      fill
-      sizes="100vw"
-      loading="eager"
-      priority
-      className="max-h-[calc(100dvh-84px)] object-center object-cover"
-      src={`/api/image/${randomPhoto.id}`}
-      alt={randomPhoto.name}
-      onLoad={(img) => {
-        setIsLandscape(
-          img.currentTarget.naturalWidth > img.currentTarget.naturalHeight
-        );
-      }}
-    />
-  ) : (
+  const handleLoad = (event: SyntheticEvent<HTMLImageElement>) => {
+    const image = event.currentTarget;
+    setIsLandscape(image.naturalWidth > image.naturalHeight);
+  };
+
+  return (
     <Image
       width={0}
       height={0}
-      style={{ width: '100%', height: 'auto' }}
-      sizes="100vw"
+      sizes="(min-width: 1024px) 50vw, 100vw"
       loading="eager"
       priority
-      className="max-h-[calc(100dvh-84px)] object-center min-h-full object-cover"
+      className={
+        isLandscape
+          ? 'h-full w-full object-cover object-center'
+          : 'h-auto min-h-full w-full object-cover object-center'
+      }
       src={`/api/image/${randomPhoto.id}`}
       alt={randomPhoto.name}
-      onLoad={(img) => {
-        setIsLandscape(
-          img.currentTarget.naturalWidth > img.currentTarget.naturalHeight
-        );
-      }}
+      onLoad={handleLoad}
     />
   );
 }

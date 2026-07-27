@@ -97,7 +97,7 @@ export default function PhotoPopup({
             {displayPhotos.map((photo, idx) => (
               <SwiperSlide
                 key={`${photo.id}-${idx}`}
-                className="swiper-slide !flex items-center w-full"
+                className="swiper-slide !flex items-center justify-center w-full"
               >
                 <div className="relative align-middle inline-block">
                   <Image
@@ -105,7 +105,7 @@ export default function PhotoPopup({
                     height={0}
                     sizes="100vw"
                     loading="lazy"
-                    className="object-contain max-h-[95vh] w-auto h-auto"
+                    className="object-contain max-h-[96vh] w-auto h-auto"
                     src={`/api/image/${photo.id}`}
                     alt={photo.name}
                   />
